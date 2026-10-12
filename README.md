@@ -6,6 +6,10 @@ Yandex Disk to Google Drive.
 Uses the official [Yandex Disk REST API](https://yandex.ru/dev/disk/rest/) to list
 public resources and request download links.
 
+<center>
+<img src="./assets/image.png" width="900">
+</center>
+
 ## Usage
 
 1. Download [the notebook](migration.ipynb) and open it through **File → Upload notebook** at [Google Colab](https://colab.research.google.com/).

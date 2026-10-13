@@ -46,16 +46,18 @@ Disk. Existing copies are verified and skipped when they match; set
 with the same destination name produce an error when overwriting is disabled.
 The final report shows downloaded files, verified files skipped, and errors.
 
-## Retrying transfers
+## Timeouts and failed transfers
 
-Downloads retry up to eight times, with a 30-second connection timeout and a
-300-second read timeout. The read timeout limits waiting for data, not the total
-download duration. A fresh download URL is requested for each attempt.
+Each API request and file download is attempted once, without automatic retries.
+Connection and read timeouts are both 60 seconds. The read timeout limits waiting
+for data, not the total download duration. Failed files are reported, and copying
+continues with the next file.
 
 Partial downloads remain on the runtime's local disk. Rerun the copying cell in
 the same runtime to resume them when the server supports range requests. If a
 resume request is ignored, the file is downloaded from the beginning. Invalid
-range responses or failed integrity checks also restart the download.
+range responses or failed integrity checks are reported without a second attempt;
+rerunning the cell starts those downloads from the beginning.
 
 Resetting or deleting the Colab runtime removes its local partial files. Files
 already copied to Google Drive remain available. If writing to Drive fails, the
